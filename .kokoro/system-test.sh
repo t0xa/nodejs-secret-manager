@@ -24,6 +24,11 @@ export GCLOUD_PROJECT=long-door-651
 
 cd $(dirname $0)/..
 
+# Test the new logic for populating secrets from secret manager:
+$KOKORO_GFILE_DIR/populate-secrets.py
+cat $KOKORO_GFILE_DIR/secret_manager/not_a_real_secret_testing_permissions
+exit 0
+
 # Run a pre-test hook, if a pre-system-test.sh is in the project
 if [ -f .kokoro/pre-system-test.sh ]; then
     set +x

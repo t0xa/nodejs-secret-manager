@@ -31,6 +31,11 @@ if [ -f .kokoro/pre-samples-test.sh ]; then
     set -x
 fi
 
+# Test the new logic for populating secrets from secret manager:
+$KOKORO_GFILE_DIR/populate-secrets.py
+cat $KOKORO_GFILE_DIR/secret_manager/not_a_real_secret_testing_permissions
+exit 0
+
 if [ -f samples/package.json ]; then
     npm install
 
